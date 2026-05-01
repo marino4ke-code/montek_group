@@ -3,10 +3,21 @@ import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
 const photos = [
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/photo_2025-10-14_00-00-36.jpg',
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/IMG_1163-1-scaled.jpg',
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/IMG_5882-1.jpg',
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/IMG_7638.jpg',
+  'https://drive.google.com/uc?export=view&id=1CIAwXQgtAAQKJAh1NefRXdqeV8VHI99L',
+  'https://drive.google.com/uc?export=view&id=1_CX-1f-qs7oFWUrk3JTLNZcjhpfNtBce',
+  'https://drive.google.com/uc?export=view&id=1F2U-L0--zlCkBTc0yFPrIyws8B9LDnnp',
+  'https://drive.google.com/uc?export=view&id=1PQ6TFG0H6uASlHLfWov9C0sw03NC-Nog',
+  'https://drive.google.com/uc?export=view&id=1PuTAhujB3nIvsqxiY7NBelyQJJKnC9Ls',
+  'https://drive.google.com/uc?export=view&id=1dNDfj1FKQ2_Fy8yBSV8ZSYjfQgEh-yFY',
+  'https://drive.google.com/uc?export=view&id=1Qa3RgTg7HJUJx71E2NhLAk43E-S8SefG',
+  'https://drive.google.com/uc?export=view&id=1DbjO7dbnKXmEVhN4FmkbU6iAVMnwjfhj',
+  'https://drive.google.com/uc?export=view&id=1HlNpQ0DHSKee8oN5a-hSFSgVcEiYvyN6',
+  'https://drive.google.com/uc?export=view&id=14bKbsTN7PP_IAe7-hGhmlbdT83oADl9z',
+  'https://drive.google.com/uc?export=view&id=1qBCvgXhUjBmZqEc3noiDq8BJwDVg9Sqa',
+  'https://drive.google.com/uc?export=view&id=16o53JQZ-tfRxDeW4mt9EVZOw8GMf6wmY',
+  'https://drive.google.com/uc?export=view&id=1FDI8M7mZ26XycOms9Kf5hoS56ZAjB_vN',
+  'https://drive.google.com/uc?export=view&id=1OK9CtfyvUY8QeKADiLHxCRU3nHTLDqaK',
+  'https://drive.google.com/uc?export=view&id=11wJVQnUYV1JC5Kl2cjMsvbwi6wcGiAj2',
 ]
 
 export default function BathroomPage() {

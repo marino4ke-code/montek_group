@@ -3,8 +3,14 @@ import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
 const photos = [
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/IMG_0681.jpg',
-  'https://touched-salmon.10web.cloud/wp-content/uploads/2026/03/IMG_7274.jpg?v=ujsevr4s88',
+  'https://drive.google.com/uc?export=view&id=1JZkzUwNMJ3_DFAtpzWeF0y6EzozX4CZa',
+  'https://drive.google.com/uc?export=view&id=1zIp08opo1ImVmydDPpkdXsrAbxfI4RZB',
+  'https://drive.google.com/uc?export=view&id=140tQtXlQfmcuhpXCF48nyIJRmkg3-2_g',
+  'https://drive.google.com/uc?export=view&id=127gbB7U2hbdT-ALUA2WdMbbaGH_DniMT',
+  'https://drive.google.com/uc?export=view&id=1lKclOne_nrUy0C8YL-BgAZUrurFyULoq',
+  'https://drive.google.com/uc?export=view&id=1P5hG1AsH-VycWVgsGF7D3QQnqliSdu74',
+  'https://drive.google.com/uc?export=view&id=1zlbyx3Q6sTyvUskX_6XmCRJ2KDP6eq8p',
+  'https://drive.google.com/uc?export=view&id=1QZAzHaI0PV88rxymQcOFnZqNgORNiGrk',
 ]
 
 export default function CommercialPage() {
@@ -22,7 +28,7 @@ export default function CommercialPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
             {photos.map((src, i) => (
               <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
-                <img src={src} alt="Commercial" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={src} alt="Commercial work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
           </div>
