@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+const LOGO = 'https://res.cloudinary.com/duiosldww/image/upload/ebtzuv8tbp4c3uzeiing.png'
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
@@ -16,20 +18,16 @@ export default function Header() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '72px', maxWidth: '1400px', margin: '0 auto' }}>
 
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <img
-            src="https://touched-salmon.10web.cloud/wp-content/uploads/2026/04/Gemini_Generated_Image_dztsnudztsnudzts.png"
-            alt="Montek Group LLC"
-            style={{ height: '64px', width: 'auto', objectFit: 'contain' }}
-          />
+          <img src={LOGO} alt="Montek Group LLC" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }} className="hide-mobile">
+        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
           {links.map(item => (
             <Link key={item.label} to={item.href} style={{
               color: location.pathname === item.href ? '#B86B25' : '#1A305E',
               fontSize: '14px', fontWeight: 600, textDecoration: 'none',
-              padding: '8px 16px', borderRadius: '5px', letterSpacing: '0.5px'
+              padding: '8px 16px', borderRadius: '5px'
             }}>
               {item.label}
             </Link>
@@ -37,35 +35,46 @@ export default function Header() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }} className="hide-mobile">
+          <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>
             347-286-1223
           </a>
           <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '10px 20px', borderRadius: '5px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}>
             Free Quote
           </Link>
-          {/* Mobile menu button */}
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ display: 'none', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#1A305E' }} className="show-mobile">
-            ☰
+          {/* Mobile hamburger */}
+          <button onClick={() => setMenuOpen(!menuOpen)}
+            style={{ display: 'none', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
+            id="hamburger">
+            {menuOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }}>
+        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }} id="mobile-menu">
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block', color: '#1A305E', fontSize: '15px', fontWeight: 600,
-              textDecoration: 'none', padding: '12px 0', borderBottom: '1px solid #E0D8CC'
+              display: 'block', color: '#1A305E', fontSize: '16px', fontWeight: 600,
+              textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC'
             }}>
               {item.label}
             </Link>
           ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '15px', fontWeight: 700, textDecoration: 'none', padding: '12px 0' }}>
+          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '16px', fontWeight: 700, textDecoration: 'none', padding: '14px 0' }}>
             📞 347-286-1223
           </a>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          #hamburger { display: block !important; }
+          nav { display: none !important; }
+          a[href="tel:3472861223"] { display: none !important; }
+          header > div { padding: 0 20px !important; }
+        }
+      `}</style>
     </header>
   )
 }

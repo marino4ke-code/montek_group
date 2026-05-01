@@ -14,14 +14,14 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section style={{ background: '#F5F2EA', padding: '72px 48px' }}>
+    <section style={{ background: '#F5F2EA', padding: 'clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px)' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>What We Do</div>
-        <h2 style={{ color: '#1A305E', fontSize: '36px', fontWeight: 800, marginBottom: '12px' }}>Our Services</h2>
+        <h2 style={{ color: '#1A305E', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, marginBottom: '12px' }}>Our Services</h2>
         <p style={{ color: '#5A6A7A', fontSize: '16px', lineHeight: 1.8, marginBottom: '40px', maxWidth: '600px' }}>
           From a single room refresh to a full commercial build-out — licensed tradespeople, quality materials, guaranteed results.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
           {services.map(s => (
             <Link key={s.name} to={s.href} style={{ background: '#fff', border: '1px solid #E0D8CC', borderRadius: '10px', padding: '28px 22px', borderTop: '3px solid #1A305E', textDecoration: 'none', display: 'block', transition: 'transform 0.2s' }}
               onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-4px)')}

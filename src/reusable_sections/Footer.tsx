@@ -1,13 +1,24 @@
 import { Link } from 'react-router-dom'
 
+const LOGO = 'https://res.cloudinary.com/duiosldww/image/upload/ebtzuv8tbp4c3uzeiing.png'
+
 export default function Footer() {
   return (
     <footer style={{ background: '#1A305E', borderTop: '3px solid #B86B25', padding: '48px 48px 24px' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '40px', marginBottom: '40px' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+          .footer-wrap { padding: 32px 20px 16px !important; }
+        }
+        @media (max-width: 480px) {
+          .footer-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+      <div className="footer-wrap" style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '40px', marginBottom: '40px' }}>
 
           <div>
-            <img src="https://touched-salmon.10web.cloud/wp-content/uploads/2026/04/Gemini_Generated_Image_dztsnudztsnudzts.png" alt="Montek Group LLC" style={{ height: '60px', width: 'auto', marginBottom: '12px' }} />
+            <img src={LOGO} alt="Montek Group LLC" style={{ height: '60px', width: 'auto', marginBottom: '12px' }} />
             <p style={{ color: '#94a3b8', fontSize: '13px', lineHeight: 1.7, maxWidth: '260px' }}>
               Licensed & insured construction and renovation serving Staten Island, Manhattan, Brooklyn, Queens, and New Jersey.
             </p>
@@ -39,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{ borderTop: '1px solid #1e3a6e', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ borderTop: '1px solid #1e3a6e', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ color: '#475569', fontSize: '12px' }}>© 2026 Montek Group LLC. All rights reserved.</div>
           <div style={{ border: '1px solid #B86B25', color: '#B86B25', fontSize: '11px', padding: '4px 14px', borderRadius: '20px' }}>Licensed & Insured — NY & NJ</div>
         </div>
