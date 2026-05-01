@@ -31,8 +31,15 @@ export default function Hero() {
           <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '14px 28px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
             Get a Free Estimate
           </Link>
-          <a href="tel:3472861223" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '14px 28px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
-            Call 347-286-1223
+         <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+  <a href="tel:3472861223" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '14px 28px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
+    Call 347-286-1223
+  </a>
+  
+  <a href="tel:3474804805" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '14px 28px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
+    Call 347-480-4805
+  </a>
+</div>
           </a>
         </div>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
