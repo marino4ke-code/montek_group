@@ -2,22 +2,24 @@ import { Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
+const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
+
 const photos = [
-  'https://drive.google.com/uc?export=view&id=1CIAwXQgtAAQKJAh1NefRXdqeV8VHI99L',
-  'https://drive.google.com/uc?export=view&id=1_CX-1f-qs7oFWUrk3JTLNZcjhpfNtBce',
-  'https://drive.google.com/uc?export=view&id=1F2U-L0--zlCkBTc0yFPrIyws8B9LDnnp',
-  'https://drive.google.com/uc?export=view&id=1PQ6TFG0H6uASlHLfWov9C0sw03NC-Nog',
-  'https://drive.google.com/uc?export=view&id=1PuTAhujB3nIvsqxiY7NBelyQJJKnC9Ls',
-  'https://drive.google.com/uc?export=view&id=1dNDfj1FKQ2_Fy8yBSV8ZSYjfQgEh-yFY',
-  'https://drive.google.com/uc?export=view&id=1Qa3RgTg7HJUJx71E2NhLAk43E-S8SefG',
-  'https://drive.google.com/uc?export=view&id=1DbjO7dbnKXmEVhN4FmkbU6iAVMnwjfhj',
-  'https://drive.google.com/uc?export=view&id=1HlNpQ0DHSKee8oN5a-hSFSgVcEiYvyN6',
-  'https://drive.google.com/uc?export=view&id=14bKbsTN7PP_IAe7-hGhmlbdT83oADl9z',
-  'https://drive.google.com/uc?export=view&id=1qBCvgXhUjBmZqEc3noiDq8BJwDVg9Sqa',
-  'https://drive.google.com/uc?export=view&id=16o53JQZ-tfRxDeW4mt9EVZOw8GMf6wmY',
-  'https://drive.google.com/uc?export=view&id=1FDI8M7mZ26XycOms9Kf5hoS56ZAjB_vN',
-  'https://drive.google.com/uc?export=view&id=1OK9CtfyvUY8QeKADiLHxCRU3nHTLDqaK',
-  'https://drive.google.com/uc?export=view&id=11wJVQnUYV1JC5Kl2cjMsvbwi6wcGiAj2',
+  base + 'akzqml4so3mi7opxuwvx.jpg',
+  base + 'mhb7uvoamraahw6adycg.jpg',
+  base + 'iqphxlgxjqn2bgvxnhpi.jpg',
+  base + 'i0wvqgj14ofbgbharly7.jpg',
+  base + 'jatlvxokdvqjsk5zrsrk.jpg',
+  base + 'u7l0evqzayllhegwuyfx.jpg',
+  base + 'vu7vhaqynrhmwsfpcker.jpg',
+  base + 'aybdh4mhacd8mcuunvrl.jpg',
+  base + 'f43jbdte8s3rrottxnug.jpg',
+  base + 'zh7m7ye4vlrmzkaosjqr.jpg',
+  base + 'fnccm70yrjdld2u6otn5.jpg',
+  base + 'vhqjy6hykrlpflmgolwh.jpg',
+  base + 'hufcb4mtia1kx490nsuq.jpg',
+  base + 'ltque5ulrrl41lpgecl0.jpg',
+  base + 'j0ufjkn2b6ld4gdw80cp.jpg',
 ]
 
 export default function BathroomPage() {

@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
+const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
+
 const photos = [
-  'https://drive.google.com/uc?export=view&id=1JZkzUwNMJ3_DFAtpzWeF0y6EzozX4CZa',
-  'https://drive.google.com/uc?export=view&id=1zIp08opo1ImVmydDPpkdXsrAbxfI4RZB',
-  'https://drive.google.com/uc?export=view&id=140tQtXlQfmcuhpXCF48nyIJRmkg3-2_g',
-  'https://drive.google.com/uc?export=view&id=127gbB7U2hbdT-ALUA2WdMbbaGH_DniMT',
-  'https://drive.google.com/uc?export=view&id=1lKclOne_nrUy0C8YL-BgAZUrurFyULoq',
-  'https://drive.google.com/uc?export=view&id=1P5hG1AsH-VycWVgsGF7D3QQnqliSdu74',
-  'https://drive.google.com/uc?export=view&id=1zlbyx3Q6sTyvUskX_6XmCRJ2KDP6eq8p',
-  'https://drive.google.com/uc?export=view&id=1QZAzHaI0PV88rxymQcOFnZqNgORNiGrk',
+  base + 'ycbnw5milxx6rqe8ghfa.jpg',
+  base + 'do0l4njno3yxk1qh3uxa.jpg',
+  base + 'vykjlwxtytirczrvxtg4.jpg',
+  base + 'kiw0oqzeksjwbki7hzbo.jpg',
+  base + 'u3u2motvv4mgitisihvf.jpg',
+  base + 'pcf3yowm3qddn0qxpcff.jpg',
+  base + 'us4vyfmz7oahqanr00lm.jpg',
+  base + 'iylk5qvbusw3u9ppfxqr.jpg',
 ]
 
 export default function CommercialPage() {

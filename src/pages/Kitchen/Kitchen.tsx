@@ -2,25 +2,34 @@ import { Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
+const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
+
 const photos = [
-  'https://drive.google.com/uc?export=view&id=1C05LhJ00ZvSQHLTbd_Ga4uXjig8aC40-',
-  'https://drive.google.com/uc?export=view&id=1RxKOgAj6uN-JYvFNtJwuZP2gkwptfJQy',
-  'https://drive.google.com/uc?export=view&id=11hhRdIeGdQrQEtfMXML5C9t_tQKjEtwJ',
-  'https://drive.google.com/uc?export=view&id=1By2HJJE2Vx1uNJA8_Ewu3eajI7XPm_pf',
-  'https://drive.google.com/uc?export=view&id=1g5H6-gNZwlRS-UiDa3hvIaPUD7Yj8pNz',
-  'https://drive.google.com/uc?export=view&id=1pKI8U6gt8QIQiGmGpZPzhAKmH7Wtmggy',
-  'https://drive.google.com/uc?export=view&id=1Act_zlCrmxbXWjSUJHt6UBUg9U_87SGw',
-  'https://drive.google.com/uc?export=view&id=16LTZFx1ztpACatJHpuw6Jb5BNVMMdkUo',
-  'https://drive.google.com/uc?export=view&id=1JS0Vk5gn1Q0ZAtZgvPbH9qXWCSI-2lsY',
-  'https://drive.google.com/uc?export=view&id=1VS4ptB3KPNfuoNJg9c58XJ5Ea1t-QV9k',
-  'https://drive.google.com/uc?export=view&id=12aC5QuE88YMwT0065YZDw3qziIwG_eOU',
-  'https://drive.google.com/uc?export=view&id=1C5o0Yb_3zgChZrCEA36PIOLXWr1356p5',
-  'https://drive.google.com/uc?export=view&id=1Py_PTopcJFeqg__2cPd5N7wj0B2mWJQM',
-  'https://drive.google.com/uc?export=view&id=1elH1N5hHDnYMllwS9Pj-XcTRrAvOxsRJ',
-  'https://drive.google.com/uc?export=view&id=1sQOIrdG8zyJz_-LYJi6E70Eqehtq7qY-',
-  'https://drive.google.com/uc?export=view&id=1nOMy5ZhJgA18EooU_S_8HIJgW_ySgJQu',
-  'https://drive.google.com/uc?export=view&id=1TMeMLgGRWa-UmElTmR5SjCjrzTvYcdbR',
-  'https://drive.google.com/uc?export=view&id=18D63coLn4dbBxB47yousem_tltCFTLGE',
+  base + 'ny8hea1s6gke1rlggy9y.jpg',
+  base + 'df41qtu0kch71i4ujdni.jpg',
+  base + 'pvfvnxsxhov0e5xd3zpw.jpg',
+  base + 'ydqvpadb20ixws8bkjth.jpg',
+  base + 'bkfpsudqhjv2diaetjjq.jpg',
+  base + 'urr7jpnuooek41qn5ofe.jpg',
+  base + 'jsxpfkzvdf8bncxsfadm.jpg',
+  base + 'fvq2ri3jsuvald59pywu.jpg',
+  base + 'bhxuejmy0y82qd5qcyon.jpg',
+  base + 'zffauyhwrn2r3meryb1h.jpg',
+  base + 'y7zkygzd3gps40lviukr.jpg',
+  base + 'b3nhntcummwwvucowyt8.jpg',
+  base + 'mpdqcczkjulbltnjbm4v.jpg',
+  base + 'm6mvdsub9eghvv0reath.jpg',
+  base + 'qczybk7s5zgt0syeqhvw.jpg',
+  base + 'yu6ui0ehvzmlrfwq8rbm.jpg',
+  base + 'rqqs6yw97sulzuh2fedw.jpg',
+  base + 'p82itlsq1cta1c1nhxaa.jpg',
+  base + 'nbftpvyxg3g1a4cxiftl.jpg',
+  base + 'gp30pyoavqlxt9jb2osj.jpg',
+  base + 'zawfqwomybkebbbcu54g.jpg',
+  base + 'ki7bokpqsjphrjv3pa6s.jpg',
+  base + 'letguh81mup9jdun15ci.jpg',
+  base + 'jedoc60ukllcues6dnfq.jpg',
+  base + 'iz4i9wu08p9xs1wcojbm.jpg',
 ]
 
 export default function KitchenPage() {

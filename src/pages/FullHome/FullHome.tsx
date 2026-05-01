@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
+const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
+
 const photos = [
-  'https://drive.google.com/uc?export=view&id=1I5y4CDdikt9I3IgPRKFHZgOzCWH-cp8u',
-  'https://drive.google.com/uc?export=view&id=14LpgSUb5WAzBAoTkwrJ6DPDFjIJ4kxdy',
-  'https://drive.google.com/uc?export=view&id=1LnzOT4YHK_CvAHckfElAle9TQUR6m6Pw',
-  'https://drive.google.com/uc?export=view&id=1cangn9mC5w2ABBfXWRs0zTXnqto8PW8J',
-  'https://drive.google.com/uc?export=view&id=1BbLufyEhjMB9wPz2GUzQq_s1p0bci7uS',
-  'https://drive.google.com/uc?export=view&id=1E3C8PhQhdtb-qlVTNzXKMXB-uZhU7aoJ',
-  'https://drive.google.com/uc?export=view&id=183MFlp-TK_vkyZkoj-2kiUVlL5ujtinL',
-  'https://drive.google.com/uc?export=view&id=1KVC2VDmqniUPZr-UVG4miNV6TkUY08ZK',
+  base + 'q4j7ko2p0saubuu2u9if.jpg',
+  base + 'nt3jozvsfjsabqlk1ojh.jpg',
+  base + 'yz4sk6nusquzbaj4zymk.jpg',
+  base + 'guzz7uuuriiemimr0em3.jpg',
+  base + 'xfneu3vye33wbzxugxje.jpg',
+  base + 'aqnnkvum2s8w0ghwwru1.jpg',
+  base + 'ktglbelzwmhuonkuvclu.jpg',
+  base + 'whg0g15qm9f75vorfglc.jpg',
 ]
 
 export default function FullHomePage() {
