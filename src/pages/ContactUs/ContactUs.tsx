@@ -6,19 +6,28 @@ export default function ContactUsPage() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', service: 'Kitchen Remodeling', area: 'Staten Island, NY', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setError(false)
     try {
-      await fetch('https://formspree.io/f/xzdorrka', {
+      const res = await fetch('https://formspree.io/f/xzdorrka', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(form),
       })
-      setSubmitted(true)
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        setError(true)
+      }
     } catch {
-      setSubmitted(true)
+      setError(true)
     }
     setLoading(false)
   }
@@ -103,6 +112,12 @@ export default function ContactUsPage() {
                     style={{ width: '100%', background: '#B86B25', color: '#fff', border: 'none', padding: '15px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, cursor: 'pointer' }}>
                     {loading ? 'Sending...' : 'Send My Free Estimate Request'}
                   </button>
+
+                  {error && (
+                    <p style={{ color: '#c0392b', fontSize: '14px', marginTop: '12px', textAlign: 'center' }}>
+                      Something went wrong. Please call us at 347-286-1223.
+                    </p>
+                  )}
                 </form>
               )}
             </div>
