@@ -6,40 +6,49 @@ export default function ContactUsPage() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', service: 'Kitchen Remodeling', area: 'Staten Island, NY', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(false)
+    setError('')
     try {
       const res = await fetch('https://formspree.io/f/xzdorrka', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          service: form.service,
+          area: form.area,
+          message: form.message,
+        }),
       })
       if (res.ok) {
         setSubmitted(true)
       } else {
-        setError(true)
+        const data = await res.json()
+        setError(data?.errors?.[0]?.message || 'Something went wrong. Please try again.')
       }
     } catch {
-      setError(true)
+      setError('Network error. Please try again or call us directly.')
     }
     setLoading(false)
   }
 
-  const inputStyle = {
+  const inputStyle: React.CSSProperties = {
     width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC',
-    borderRadius: '6px', padding: '12px', fontSize: '15px', color: '#1A305E', outline: 'none'
+    borderRadius: '6px', padding: '12px', fontSize: '15px', color: '#1A305E', outline: 'none',
+    fontFamily: 'inherit'
   }
 
-  const labelStyle = {
-    color: '#1A305E', fontSize: '12px', fontWeight: 700 as const,
-    letterSpacing: '0.5px', display: 'block' as const, marginBottom: '6px'
+  const labelStyle: React.CSSProperties = {
+    color: '#1A305E', fontSize: '12px', fontWeight: 700,
+    letterSpacing: '0.5px', display: 'block', marginBottom: '6px'
   }
 
   return (
@@ -53,20 +62,25 @@ export default function ContactUsPage() {
             <p style={{ color: '#5A6A7A', fontSize: '16px', lineHeight: 1.7 }}>Fill out the form and we will get back to you within 24 hours with a free no-obligation estimate.</p>
           </div>
 
-          {/* FORM FIRST on all screens */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
 
             {/* FORM */}
             <div style={{ background: '#fff', border: '1px solid #E0D8CC', borderRadius: '12px', padding: '36px' }}>
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                  <div style={{ fontSize: '48px', marginBottom: '16px' }}>✅</div>
-                  <h3 style={{ color: '#1A305E', fontSize: '22px', fontWeight: 800, marginBottom: '10px' }}>Request Received!</h3>
-                  <p style={{ color: '#5A6A7A', fontSize: '15px' }}>Thank you! We will contact you within 24 hours to discuss your project.</p>
+                  <div style={{ fontSize: '56px', marginBottom: '16px' }}>✅</div>
+                  <h3 style={{ color: '#1A305E', fontSize: '24px', fontWeight: 800, marginBottom: '10px' }}>Request Received!</h3>
+                  <p style={{ color: '#5A6A7A', fontSize: '15px', lineHeight: 1.7 }}>Thank you! We will contact you within 24 hours to discuss your project and schedule a free on-site estimate.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <h3 style={{ color: '#1A305E', fontSize: '20px', fontWeight: 700, marginBottom: '24px' }}>Request a Free Estimate</h3>
+
+                  {error && (
+                    <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', color: '#dc2626', padding: '12px', borderRadius: '6px', marginBottom: '16px', fontSize: '14px' }}>
+                      {error}
+                    </div>
+                  )}
 
                   <div style={{ marginBottom: '16px' }}>
                     <label style={labelStyle}>FULL NAME *</label>
@@ -105,19 +119,13 @@ export default function ContactUsPage() {
                     <label style={labelStyle}>TELL US ABOUT YOUR PROJECT</label>
                     <textarea value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                       placeholder="Describe your project, timeline, and any specific requirements..."
-                      rows={4} style={{ ...inputStyle, resize: 'vertical' as const }} />
+                      rows={4} style={{ ...inputStyle, resize: 'vertical' }} />
                   </div>
 
                   <button type="submit" disabled={loading}
-                    style={{ width: '100%', background: '#B86B25', color: '#fff', border: 'none', padding: '15px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, cursor: 'pointer' }}>
-                    {loading ? 'Sending...' : 'Send My Free Estimate Request'}
+                    style={{ width: '100%', background: loading ? '#ccc' : '#B86B25', color: '#fff', border: 'none', padding: '15px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer', transition: 'background 0.2s' }}>
+                    {loading ? 'Sending...' : '📩 Send My Free Estimate Request'}
                   </button>
-
-                  {error && (
-                    <p style={{ color: '#c0392b', fontSize: '14px', marginTop: '12px', textAlign: 'center' }}>
-                      Something went wrong. Please call us at 347-286-1223.
-                    </p>
-                  )}
                 </form>
               )}
             </div>
@@ -126,8 +134,8 @@ export default function ContactUsPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div style={{ background: '#1A305E', borderRadius: '10px', padding: '24px' }}>
                 <div style={{ color: '#B86B25', fontSize: '12px', letterSpacing: '1px', marginBottom: '12px', fontWeight: 700 }}>PHONE</div>
-                <a href="tel:3472861223" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none', marginBottom: '8px' }}>347-286-1223</a>
-                <a href="tel:3474804805" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none' }}>347-480-4805</a>
+                <a href="tel:3472861223" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none', marginBottom: '8px' }}>📞 347-286-1223</a>
+                <a href="tel:3474804805" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none' }}>📞 347-480-4805</a>
                 <div style={{ color: '#94a3b8', fontSize: '14px', marginTop: '8px' }}>Call or text anytime</div>
               </div>
 
@@ -148,8 +156,8 @@ export default function ContactUsPage() {
               </div>
 
               <div style={{ background: '#B86B25', borderRadius: '10px', padding: '20px', textAlign: 'center' }}>
-                <div style={{ color: '#fff', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>✓ LICENSED & INSURED</div>
-                <div style={{ color: '#F5F2EA', fontSize: '17px', fontWeight: 800 }}>New York & New Jersey</div>
+                <div style={{ color: '#fff', fontSize: '15px', fontWeight: 700, marginBottom: '4px' }}>✓ LICENSED & INSURED</div>
+                <div style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 800 }}>New York & New Jersey</div>
                 <div style={{ color: '#F5F2EA', fontSize: '13px', marginTop: '4px', opacity: 0.9 }}>Fully bonded — you are protected.</div>
               </div>
             </div>

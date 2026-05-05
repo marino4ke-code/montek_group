@@ -19,7 +19,7 @@ export default function Header() {
 
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
           <img src={LOGO} alt="Montek Group LLC" style={{ height: '76px', width: 'auto', objectFit: 'contain' }} />
-          <span style={{ color: '#1A305E', fontSize: '19px', fontWeight: 800, letterSpacing: '0.3px', lineHeight: 1.2 }}>
+          <span style={{ color: '#1A305E', fontSize: '19px', fontWeight: 800, lineHeight: 1.2 }}>
             Montek<br />Group LLC
           </span>
         </Link>
@@ -37,38 +37,44 @@ export default function Header() {
           ))}
         </nav>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }} id="phone-block">
+        {/* Desktop right side */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} id="desktop-right">
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
             <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-286-1223</a>
             <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-480-4805</a>
           </div>
-          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '13px 24px', borderRadius: '5px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-            Free Quote
-          </Link>
-          <button onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
-            id="hamburger">
-            {menuOpen ? '✕' : '☰'}
-          </button>
         </div>
+
+        {/* Mobile hamburger */}
+        <button onClick={() => setMenuOpen(!menuOpen)}
+          style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
+          id="hamburger">
+          {menuOpen ? '✕' : '☰'}
+        </button>
       </div>
 
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }}>
+        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0' }}>
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
               display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,
-              textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC'
+              textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC'
             }}>
               {item.label}
             </Link>
           ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC' }}>
+          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC' }}>
             📞 347-286-1223
           </a>
-          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '14px 0' }}>
+          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px' }}>
             📞 347-480-4805
           </a>
+          <div style={{ padding: '16px 24px' }}>
+            <Link to="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '14px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
+              Get a Free Estimate
+            </Link>
+          </div>
         </div>
       )}
 
@@ -76,7 +82,7 @@ export default function Header() {
         @media (max-width: 900px) {
           #hamburger { display: block !important; }
           #desktop-nav { display: none !important; }
-          #phone-block { display: none !important; }
+          #desktop-right { display: none !important; }
           header > div { padding: 0 20px !important; height: 72px !important; }
         }
       `}</style>

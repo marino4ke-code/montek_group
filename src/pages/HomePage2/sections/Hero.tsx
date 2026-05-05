@@ -20,26 +20,26 @@ export default function Hero() {
             Get a Free Estimate
           </Link>
           <a href="tel:3472861223" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '15px 30px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none' }}>
-            Call 347-286-1223
+            347-286-1223
           </a>
           <a href="tel:3474804805" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '15px 30px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none' }}>
-            Call 347-480-4805
+            347-480-4805
           </a>
         </div>
 
-        {/* Enlarged highlighted trust badges */}
+        {/* Trust badges - Licensed & Insured and Residential & Commercial highlighted */}
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           {[
             { text: 'Licensed & Insured NY & NJ', highlight: true },
             { text: 'Free Estimates', highlight: false },
-            { text: 'Residential & Commercial', highlight: false },
+            { text: 'Residential & Commercial', highlight: true },
             { text: 'Warranty on Labor', highlight: true },
           ].map(t => (
             <div key={t.text} style={{
               background: t.highlight ? 'rgba(184,107,37,0.3)' : 'rgba(10,22,40,0.75)',
               border: t.highlight ? '2px solid #B86B25' : '1px solid rgba(255,255,255,0.3)',
               color: '#fff',
-              fontSize: '15px',
+              fontSize: '14px',
               padding: '10px 22px',
               borderRadius: '30px',
               display: 'flex',
@@ -47,7 +47,7 @@ export default function Hero() {
               gap: '10px',
               fontWeight: t.highlight ? 700 : 500,
             }}>
-              <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#B86B25', display: 'inline-block', flexShrink: 0 }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#B86B25', display: 'inline-block', flexShrink: 0 }} />
               {t.text}
             </div>
           ))}
