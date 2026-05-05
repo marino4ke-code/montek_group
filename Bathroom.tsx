@@ -1,47 +1,37 @@
 import { Link } from 'react-router-dom'
-import Header from '../../reusable_sections/Header'
-import Footer from '../../reusable_sections/Footer'
 
-const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
-
-const photos = [
-  base + 'ycbnw5milxx6rqe8ghfa.jpg',
-  base + 'do0l4njno3yxk1qh3uxa.jpg',
-  base + 'vykjlwxtytirczrvxtg4.jpg',
-  base + 'kiw0oqzeksjwbki7hzbo.jpg',
-  base + 'u3u2motvv4mgitisihvf.jpg',
-  base + 'pcf3yowm3qddn0qxpcff.jpg',
-  base + 'us4vyfmz7oahqanr00lm.jpg',
-  base + 'iylk5qvbusw3u9ppfxqr.jpg',
+const services = [
+  { name: 'Kitchen Remodeling', desc: 'Custom cabinets, countertops, layouts & full gut renovations.', href: '/kitchen' },
+  { name: 'Bathroom Renovation', desc: 'Tile, fixtures, waterproofing & complete bathroom rebuilds.', href: '/bathroom' },
+  { name: 'Basement Finishing', desc: 'Transform unfinished basements into functional living spaces.', href: '/projects' },
+  { name: 'Flooring', desc: 'Hardwood, tile, LVP, and carpet — supply & install.', href: '/flooring' },
+  { name: 'Painting', desc: 'Interior & exterior painting with premium finishes.', href: '/painting' },
+  { name: 'Doors & Windows', desc: 'Energy-efficient installs, replacements & custom millwork.', href: '/projects' },
+  { name: 'Full Home Renovation', desc: 'Complete gut renovations from design to final walkthrough.', href: '/fullhome' },
+  { name: 'Commercial Work', desc: 'Office fit-outs, retail spaces & commercial build-outs.', href: '/commercial' },
 ]
 
-export default function CommercialPage() {
+export default function OurServices() {
   return (
-    <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
-      <Header />
-      <section style={{ padding: '72px 48px' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          <Link to="/projects" style={{ color: '#B86B25', fontSize: '13px', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginBottom: '24px' }}>← Back to Projects</Link>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Our Work</div>
-            <h1 style={{ color: '#1A305E', fontSize: '40px', fontWeight: 800, marginBottom: '12px' }}>Commercial Work</h1>
-            <p style={{ color: '#5A6A7A', fontSize: '16px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>Office fit-outs, retail spaces and commercial build-outs across NY & NJ.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
-            {photos.map((src, i) => (
-              <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
-                <img src={src} alt="Commercial work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-            ))}
-          </div>
-          <div style={{ background: '#1A305E', borderRadius: '12px', padding: '48px', textAlign: 'center' }}>
-            <h2 style={{ color: '#fff', fontSize: '28px', fontWeight: 800, marginBottom: '12px' }}>Need Commercial Work?</h2>
-            <p style={{ color: '#94a3b8', fontSize: '15px', marginBottom: '24px' }}>Get a free estimate from Montek Group LLC today.</p>
-            <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 28px', borderRadius: '6px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>Get a Free Estimate</Link>
-          </div>
+    <section style={{ background: '#F5F2EA', padding: 'clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px)' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>What We Do</div>
+        <h2 style={{ color: '#1A305E', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 800, marginBottom: '12px' }}>Our Services</h2>
+        <p style={{ color: '#5A6A7A', fontSize: '16px', lineHeight: 1.8, marginBottom: '40px', maxWidth: '600px' }}>
+          From a single room refresh to a full commercial build-out — licensed tradespeople, quality materials, guaranteed results.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+          {services.map(s => (
+            <Link key={s.name} to={s.href} style={{ background: '#fff', border: '1px solid #E0D8CC', borderRadius: '10px', padding: '28px 22px', borderTop: '3px solid #1A305E', textDecoration: 'none', display: 'block', transition: 'transform 0.2s' }}
+              onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
+              onMouseOut={e => (e.currentTarget.style.transform = 'none')}>
+              <div style={{ color: '#1A305E', fontSize: '17px', fontWeight: 700, marginBottom: '8px' }}>{s.name}</div>
+              <div style={{ color: '#6A7A8A', fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{s.desc}</div>
+              <span style={{ color: '#B86B25', fontSize: '14px', fontWeight: 600 }}>Learn more →</span>
+            </Link>
+          ))}
         </div>
-      </section>
-      <Footer />
-    </div>
+      </div>
+    </section>
   )
 }

@@ -1,85 +1,19 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+const stats = [
+  { num: '100+', lbl: 'Projects Completed' },
+  { num: '6', lbl: 'Service Areas' },
+  { num: 'NY & NJ', lbl: 'Licensed & Insured' },
+  { num: '100%', lbl: 'Satisfaction Goal' },
+]
 
-const LOGO = 'https://res.cloudinary.com/duiosldww/image/upload/ebtzuv8tbp4c3uzeiing.png'
-
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
-
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact Us', href: '/contact' },
-  ]
-
+export default function PerformanceMetrics() {
   return (
-    <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '88px', maxWidth: '1400px', margin: '0 auto' }}>
-
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <img src={LOGO} alt="Montek Group LLC" style={{ height: '76px', width: 'auto', objectFit: 'contain' }} />
-          <span style={{ color: '#1A305E', fontSize: '19px', fontWeight: 800, letterSpacing: '0.3px', lineHeight: 1.2 }}>
-            Montek<br />Group LLC
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }} id="desktop-nav">
-          {links.map(item => (
-            <Link key={item.label} to={item.href} style={{
-              color: location.pathname === item.href ? '#B86B25' : '#1A305E',
-              fontSize: '17px', fontWeight: 700, textDecoration: 'none',
-              padding: '8px 18px', borderRadius: '5px'
-            }}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }} id="phone-block">
-            <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-286-1223</a>
-            <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-480-4805</a>
-          </div>
-          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '13px 24px', borderRadius: '5px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-            Free Quote
-          </Link>
-          <button onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
-            id="hamburger">
-            {menuOpen ? '✕' : '☰'}
-          </button>
+    <div style={{ background: '#1A305E', display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: 'clamp(24px, 3vw, 36px) clamp(20px, 4vw, 48px)', flexWrap: 'wrap', gap: '20px' }}>
+      {stats.map(s => (
+        <div key={s.lbl} style={{ textAlign: 'center', minWidth: '140px' }}>
+          <div style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>{s.num}</div>
+          <div style={{ fontSize: '13px', color: '#94a3b8', letterSpacing: '1px', marginTop: '6px', textTransform: 'uppercase' }}>{s.lbl}</div>
         </div>
-      </div>
-
-      {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }}>
-          {links.map(item => (
-            <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,
-              textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC'
-            }}>
-              {item.label}
-            </Link>
-          ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC' }}>
-            📞 347-286-1223
-          </a>
-          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '14px 0' }}>
-            📞 347-480-4805
-          </a>
-        </div>
-      )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          #hamburger { display: block !important; }
-          #desktop-nav { display: none !important; }
-          #phone-block { display: none !important; }
-          header > div { padding: 0 20px !important; height: 72px !important; }
-        }
-      `}</style>
-    </header>
+      ))}
+    </div>
   )
 }
