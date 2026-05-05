@@ -27,7 +27,7 @@ const GoogleIcon = () => (
 export default function Footer() {
   const socials = [
     { label: 'Facebook', Icon: FacebookIcon, href: '#' },
-    { label: 'Instagram', Icon: InstagramIcon, href: '#' },
+    { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/montekgroupllc/' },
     { label: 'Google', Icon: GoogleIcon, href: '#' },
   ]
 
