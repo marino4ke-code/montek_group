@@ -5,6 +5,11 @@ import Footer from '../../reusable_sections/Footer'
 const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
 
 const photos = [
+  base + 'dh7abtfsml8syjfs7hs4.jpg',
+  base + 'i92cwceygqrvbrlu7wha.jpg',
+  base + 'qpu6io2na4e0lidffwwi.jpg',
+  base + 'meqrtoy1x1rs2hbpxb6l.jpg',
+  base + 'atvljn1gpxmwtx4gjlfu.jpg',
   base + 'q4j7ko2p0saubuu2u9if.jpg',
   base + 'nt3jozvsfjsabqlk1ojh.jpg',
   base + 'yz4sk6nusquzbaj4zymk.jpg',
