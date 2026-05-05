@@ -43,6 +43,9 @@ export default function Header() {
             <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-286-1223</a>
             <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-480-4805</a>
           </div>
+          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 22px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+            Free Estimate
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -55,7 +58,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0' }}>
+        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0', position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 9999, boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}>
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
               display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,

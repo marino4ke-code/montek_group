@@ -31,7 +31,6 @@ export default function Hero() {
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           {[
             { text: 'Licensed & Insured NY & NJ', highlight: true },
-            { text: 'Free Estimates', highlight: false },
             { text: 'Residential & Commercial', highlight: true },
             { text: 'Warranty on Labor', highlight: true },
           ].map(t => (
