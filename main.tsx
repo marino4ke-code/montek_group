@@ -1,40 +1,19 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+const stats = [
+  { num: '100+', lbl: 'Projects Completed' },
+  { num: '6', lbl: 'Service Areas' },
+  { num: 'NY & NJ', lbl: 'Licensed & Insured' },
+  { num: '100%', lbl: 'Satisfaction Goal' },
+]
 
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  /* Hero section */
-  section[style*="minHeight: '620px'"] {
-    min-height: 500px !important;
-  }
-
-  /* Grids become single column */
-  div[style*="gridTemplateColumns: 'repeat(3,1fr)'"],
-  div[style*="gridTemplateColumns: \"repeat(3,1fr)\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  div[style*="gridTemplateColumns: 'repeat(2,1fr)'"],
-  div[style*="gridTemplateColumns: \"repeat(2,1fr)\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Footer grid */
-  div[style*="gridTemplateColumns: '2fr 1fr 1fr 1fr'"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-}
-
-@media (max-width: 480px) {
-  div[style*="gridTemplateColumns: '2fr 1fr 1fr 1fr'"] {
-    grid-template-columns: 1fr !important;
-  }
+export default function PerformanceMetrics() {
+  return (
+    <div style={{ background: '#1A305E', display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: 'clamp(24px, 3vw, 36px) clamp(20px, 4vw, 48px)', flexWrap: 'wrap', gap: '20px' }}>
+      {stats.map(s => (
+        <div key={s.lbl} style={{ textAlign: 'center', minWidth: '140px' }}>
+          <div style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>{s.num}</div>
+          <div style={{ fontSize: '13px', color: '#94a3b8', letterSpacing: '1px', marginTop: '6px', textTransform: 'uppercase' }}>{s.lbl}</div>
+        </div>
+      ))}
+    </div>
+  )
 }
