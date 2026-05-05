@@ -14,7 +14,7 @@ export default function Header() {
   ]
 
   return (
-    <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999 }}>
+    <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999, isolation: 'isolate' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '88px', maxWidth: '1400px', margin: '0 auto' }}>
 
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
@@ -56,9 +56,14 @@ export default function Header() {
         </button>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div onClick={() => setMenuOpen(false)} style={{ position: 'fixed', inset: 0, top: 0, zIndex: 9998, background: 'rgba(0,0,0,0.4)' }} />
+      )}
+
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0', position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 9999, boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}>
+        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0', position: 'fixed', top: '72px', left: 0, right: 0, zIndex: 9999, boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}>
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
               display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,

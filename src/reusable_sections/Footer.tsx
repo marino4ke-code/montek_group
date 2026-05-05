@@ -28,7 +28,7 @@ export default function Footer() {
   const socials = [
     { label: 'Facebook', Icon: FacebookIcon, href: '#' },
     { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/montekgroupllc/' },
-    { label: 'Google', Icon: GoogleIcon, href: '#' },
+    { label: 'Google', Icon: GoogleIcon, href: 'https://maps.app.goo.gl/v6WdpMuwhZctZHho6' },
   ]
 
   return (
@@ -58,7 +58,7 @@ export default function Footer() {
             {/* Social icons */}
             <div style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
               {socials.map(({ label, Icon, href }) => (
-                <a key={label} href={href} aria-label={label} style={{
+                <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" style={{
                   width: '42px', height: '42px', borderRadius: '8px',
                   background: '#142444', border: '1px solid #1e3a6e',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
