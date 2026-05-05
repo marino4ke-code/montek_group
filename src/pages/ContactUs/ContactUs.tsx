@@ -23,18 +23,29 @@ export default function ContactUsPage() {
     setLoading(false)
   }
 
+  const inputStyle = {
+    width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC',
+    borderRadius: '6px', padding: '12px', fontSize: '15px', color: '#1A305E', outline: 'none'
+  }
+
+  const labelStyle = {
+    color: '#1A305E', fontSize: '12px', fontWeight: 700 as const,
+    letterSpacing: '0.5px', display: 'block' as const, marginBottom: '6px'
+  }
+
   return (
     <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
       <Header />
-      <section style={{ padding: '72px 48px' }}>
+      <section style={{ padding: 'clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ marginBottom: '48px' }}>
+          <div style={{ marginBottom: '40px' }}>
             <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Get In Touch</div>
-            <h1 style={{ color: '#1A305E', fontSize: '40px', fontWeight: 800, marginBottom: '12px' }}>Free Estimate & Contact</h1>
+            <h1 style={{ color: '#1A305E', fontSize: 'clamp(28px, 5vw, 40px)', fontWeight: 800, marginBottom: '12px' }}>Free Estimate & Contact</h1>
             <p style={{ color: '#5A6A7A', fontSize: '16px', lineHeight: 1.7 }}>Fill out the form and we will get back to you within 24 hours with a free no-obligation estimate.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '40px' }}>
+          {/* FORM FIRST on all screens */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
 
             {/* FORM */}
             <div style={{ background: '#fff', border: '1px solid #E0D8CC', borderRadius: '12px', padding: '36px' }}>
@@ -42,47 +53,39 @@ export default function ContactUsPage() {
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
                   <div style={{ fontSize: '48px', marginBottom: '16px' }}>✅</div>
                   <h3 style={{ color: '#1A305E', fontSize: '22px', fontWeight: 800, marginBottom: '10px' }}>Request Received!</h3>
-                  <p style={{ color: '#5A6A7A', fontSize: '15px' }}>Thank you! We will contact you within 24 hours to discuss your project and schedule a free on-site estimate.</p>
+                  <p style={{ color: '#5A6A7A', fontSize: '15px' }}>Thank you! We will contact you within 24 hours to discuss your project.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <h3 style={{ color: '#1A305E', fontSize: '18px', fontWeight: 700, marginBottom: '24px' }}>Request a Free Estimate</h3>
+                  <h3 style={{ color: '#1A305E', fontSize: '20px', fontWeight: 700, marginBottom: '24px' }}>Request a Free Estimate</h3>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>FULL NAME *</label>
-                    <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
-                      placeholder="John Smith"
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none' }} />
+                    <label style={labelStyle}>FULL NAME *</label>
+                    <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith" style={inputStyle} />
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>PHONE NUMBER *</label>
-                    <input required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
-                      placeholder="(347) 000-0000" type="tel"
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none' }} />
+                    <label style={labelStyle}>PHONE NUMBER *</label>
+                    <input required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="(347) 000-0000" type="tel" style={inputStyle} />
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>EMAIL ADDRESS</label>
-                    <input value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
-                      placeholder="john@email.com" type="email"
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none' }} />
+                    <label style={labelStyle}>EMAIL ADDRESS</label>
+                    <input value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@email.com" type="email" style={inputStyle} />
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>SERVICE NEEDED</label>
-                    <select value={form.service} onChange={e => setForm({ ...form, service: e.target.value })}
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none' }}>
-                      {['Kitchen Remodeling', 'Bathroom Renovation', 'Basement Finishing', 'Flooring', 'Painting', 'Doors & Windows', 'Decks & Outdoor', 'Full Home Renovation', 'Commercial Work', 'Other'].map(s => (
+                    <label style={labelStyle}>SERVICE NEEDED</label>
+                    <select value={form.service} onChange={e => setForm({ ...form, service: e.target.value })} style={inputStyle}>
+                      {['Kitchen Remodeling', 'Bathroom Renovation', 'Basement Finishing', 'Flooring', 'Painting', 'Doors & Windows', 'Full Home Renovation', 'Commercial Work', 'Other'].map(s => (
                         <option key={s}>{s}</option>
                       ))}
                     </select>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>SERVICE AREA</label>
-                    <select value={form.area} onChange={e => setForm({ ...form, area: e.target.value })}
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none' }}>
+                    <label style={labelStyle}>SERVICE AREA</label>
+                    <select value={form.area} onChange={e => setForm({ ...form, area: e.target.value })} style={inputStyle}>
                       {['Staten Island, NY', 'Manhattan, NY', 'Brooklyn, NY', 'Queens, NY', 'Central New Jersey', 'Northern New Jersey'].map(a => (
                         <option key={a}>{a}</option>
                       ))}
@@ -90,15 +93,14 @@ export default function ContactUsPage() {
                   </div>
 
                   <div style={{ marginBottom: '20px' }}>
-                    <label style={{ color: '#1A305E', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>TELL US ABOUT YOUR PROJECT</label>
+                    <label style={labelStyle}>TELL US ABOUT YOUR PROJECT</label>
                     <textarea value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                       placeholder="Describe your project, timeline, and any specific requirements..."
-                      rows={4}
-                      style={{ width: '100%', background: '#F5F2EA', border: '1px solid #E0D8CC', borderRadius: '6px', padding: '12px', fontSize: '14px', color: '#1A305E', outline: 'none', resize: 'vertical' }} />
+                      rows={4} style={{ ...inputStyle, resize: 'vertical' as const }} />
                   </div>
 
                   <button type="submit" disabled={loading}
-                    style={{ width: '100%', background: '#B86B25', color: '#fff', border: 'none', padding: '14px', borderRadius: '6px', fontSize: '15px', fontWeight: 700, cursor: 'pointer' }}>
+                    style={{ width: '100%', background: '#B86B25', color: '#fff', border: 'none', padding: '15px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, cursor: 'pointer' }}>
                     {loading ? 'Sending...' : 'Send My Free Estimate Request'}
                   </button>
                 </form>
@@ -107,32 +109,33 @@ export default function ContactUsPage() {
 
             {/* CONTACT INFO */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '20px' }}>
-                <div style={{ color: '#B86B25', fontSize: '11px', letterSpacing: '1px', marginBottom: '8px', fontWeight: 700 }}>PHONE</div>
-                <div style={{ color: '#fff', fontSize: '20px', fontWeight: 700 }}>347-286-1223</div>
-                <div style={{ color: '#94a3b8', fontSize: '13px', marginTop: '4px' }}>Call or text anytime</div>
+              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '24px' }}>
+                <div style={{ color: '#B86B25', fontSize: '12px', letterSpacing: '1px', marginBottom: '12px', fontWeight: 700 }}>PHONE</div>
+                <a href="tel:3472861223" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none', marginBottom: '8px' }}>347-286-1223</a>
+                <a href="tel:3474804805" style={{ color: '#fff', fontSize: '22px', fontWeight: 700, display: 'block', textDecoration: 'none' }}>347-480-4805</a>
+                <div style={{ color: '#94a3b8', fontSize: '14px', marginTop: '8px' }}>Call or text anytime</div>
               </div>
 
-              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '20px' }}>
-                <div style={{ color: '#B86B25', fontSize: '11px', letterSpacing: '1px', marginBottom: '8px', fontWeight: 700 }}>LOCATION</div>
-                <div style={{ color: '#fff', fontSize: '16px', fontWeight: 700 }}>Staten Island, NY</div>
-                <div style={{ color: '#94a3b8', fontSize: '13px', marginTop: '4px' }}>Serving NY & NJ</div>
+              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '24px' }}>
+                <div style={{ color: '#B86B25', fontSize: '12px', letterSpacing: '1px', marginBottom: '8px', fontWeight: 700 }}>LOCATION</div>
+                <div style={{ color: '#fff', fontSize: '17px', fontWeight: 700 }}>Staten Island, NY</div>
+                <div style={{ color: '#94a3b8', fontSize: '14px', marginTop: '4px' }}>Serving NY & NJ</div>
               </div>
 
-              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '20px' }}>
-                <div style={{ color: '#B86B25', fontSize: '11px', letterSpacing: '1px', marginBottom: '12px', fontWeight: 700 }}>BUSINESS HOURS</div>
+              <div style={{ background: '#1A305E', borderRadius: '10px', padding: '24px' }}>
+                <div style={{ color: '#B86B25', fontSize: '12px', letterSpacing: '1px', marginBottom: '12px', fontWeight: 700 }}>BUSINESS HOURS</div>
                 {[['Monday – Friday', '7:00 AM – 7:00 PM'], ['Saturday', '8:00 AM – 5:00 PM'], ['Sunday', 'By Appointment']].map(([day, time]) => (
-                  <div key={day} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #1e3a6e' }}>
-                    <span style={{ color: '#94a3b8', fontSize: '13px' }}>{day}</span>
-                    <span style={{ color: '#fff', fontSize: '13px' }}>{time}</span>
+                  <div key={day} style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid #1e3a6e' }}>
+                    <span style={{ color: '#94a3b8', fontSize: '14px' }}>{day}</span>
+                    <span style={{ color: '#fff', fontSize: '14px', fontWeight: 600 }}>{time}</span>
                   </div>
                 ))}
               </div>
 
               <div style={{ background: '#B86B25', borderRadius: '10px', padding: '20px', textAlign: 'center' }}>
-                <div style={{ color: '#fff', fontSize: '13px', fontWeight: 700, marginBottom: '4px' }}>LICENSED & INSURED</div>
-                <div style={{ color: '#F5F2EA', fontSize: '15px', fontWeight: 800 }}>New York & New Jersey</div>
-                <div style={{ color: '#F5F2EA', fontSize: '12px', marginTop: '4px', opacity: 0.9 }}>Fully bonded — you are protected.</div>
+                <div style={{ color: '#fff', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>✓ LICENSED & INSURED</div>
+                <div style={{ color: '#F5F2EA', fontSize: '17px', fontWeight: 800 }}>New York & New Jersey</div>
+                <div style={{ color: '#F5F2EA', fontSize: '13px', marginTop: '4px', opacity: 0.9 }}>Fully bonded — you are protected.</div>
               </div>
             </div>
           </div>
