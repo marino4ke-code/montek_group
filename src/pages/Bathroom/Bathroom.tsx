@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
@@ -23,6 +24,8 @@ const photos = [
 ]
 
 export default function BathroomPage() {
+  const [lightbox, setLightbox] = useState<number | null>(null)
+
   return (
     <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
       <Header />
@@ -36,7 +39,7 @@ export default function BathroomPage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
             {photos.map((src, i) => (
-              <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
+              <div key={i} onClick={() => setLightbox(i)} style={{ ...{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }, cursor: "pointer" }}>
                 <img src={src} alt="Bathroom renovation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
@@ -48,6 +51,21 @@ export default function BathroomPage() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightbox !== null && (
+        <div onClick={() => setLightbox(null)} style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(0,0,0,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => setLightbox(null)} style={{ position: 'absolute', top: '20px', right: '24px', background: 'none', border: 'none', color: '#fff', fontSize: '36px', cursor: 'pointer', zIndex: 1 }}>✕</button>
+          {lightbox > 0 && (
+            <button onClick={e => { e.stopPropagation(); setLightbox(lightbox - 1) }} style={{ position: 'absolute', left: '16px', background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', fontSize: '32px', cursor: 'pointer', borderRadius: '50%', width: '52px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
+          )}
+          <img src={photos[lightbox]} alt="Photo" onClick={e => e.stopPropagation()} style={{ maxWidth: '90vw', maxHeight: '88vh', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 8px 40px rgba(0,0,0,0.6)' }} />
+          <div style={{ position: 'absolute', bottom: '24px', left: 0, right: 0, textAlign: 'center', color: '#fff', fontSize: '15px', fontWeight: 600 }}>{lightbox + 1} / {photos.length}</div>
+          {lightbox < photos.length - 1 && (
+            <button onClick={e => { e.stopPropagation(); setLightbox(lightbox + 1) }} style={{ position: 'absolute', right: '16px', background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', fontSize: '32px', cursor: 'pointer', borderRadius: '50%', width: '52px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
+          )}
+        </div>
+      )}
       <Footer />
     </div>
   )
