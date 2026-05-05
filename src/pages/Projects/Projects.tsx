@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate as _useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
@@ -31,59 +31,12 @@ const photos = [
 export default function ProjectsPage() {
   const [active, setActive] = useState('all')
   const [hovered, setHovered] = useState<number | null>(null)
-  const [lightbox, setLightbox] = useState<number | null>(null)
-  const navigate = _useNavigate()
+  const navigate = useNavigate()
   const filtered = active === 'all' ? photos : photos.filter(p => p.cat === active)
-
-  const lightboxPhoto = lightbox !== null ? photos.find(p => p.id === lightbox) : null
-  const lightboxIndex = lightbox !== null ? filtered.findIndex(p => p.id === lightbox) : -1
-
-  const openLightbox = (id: number) => setLightbox(id)
-  const closeLightbox = () => setLightbox(null)
-  const prevPhoto = () => {
-    if (lightboxIndex > 0) setLightbox(filtered[lightboxIndex - 1].id)
-  }
-  const nextPhoto = () => {
-    if (lightboxIndex < filtered.length - 1) setLightbox(filtered[lightboxIndex + 1].id)
-  }
 
   return (
     <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
       <Header />
-
-      {/* Lightbox */}
-      {lightboxPhoto && (
-        <div
-          onClick={closeLightbox}
-          style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(0,0,0,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        >
-          {/* Close */}
-          <button onClick={closeLightbox} style={{ position: 'absolute', top: '20px', right: '24px', background: 'none', border: 'none', color: '#fff', fontSize: '36px', cursor: 'pointer', zIndex: 1 }}>✕</button>
-
-          {/* Prev */}
-          {lightboxIndex > 0 && (
-            <button onClick={e => { e.stopPropagation(); prevPhoto() }} style={{ position: 'absolute', left: '16px', background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', fontSize: '32px', cursor: 'pointer', borderRadius: '50%', width: '52px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
-          )}
-
-          {/* Image */}
-          <img
-            src={lightboxPhoto.img}
-            alt={lightboxPhoto.label}
-            onClick={e => e.stopPropagation()}
-            style={{ maxWidth: '90vw', maxHeight: '88vh', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 8px 40px rgba(0,0,0,0.6)' }}
-          />
-
-          {/* Label */}
-          <div style={{ position: 'absolute', bottom: '24px', left: 0, right: 0, textAlign: 'center', color: '#fff', fontSize: '16px', fontWeight: 600 }}>
-            {lightboxPhoto.label} &nbsp;·&nbsp; {lightboxIndex + 1} / {filtered.length}
-          </div>
-
-          {/* Next */}
-          {lightboxIndex < filtered.length - 1 && (
-            <button onClick={e => { e.stopPropagation(); nextPhoto() }} style={{ position: 'absolute', right: '16px', background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', fontSize: '32px', cursor: 'pointer', borderRadius: '50%', width: '52px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
-          )}
-        </div>
-      )}
 
       <section style={{ padding: 'clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
@@ -108,14 +61,14 @@ export default function ProjectsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
             {filtered.map(p => (
               <div key={p.id}
-                onClick={() => openLightbox(p.id)}
+                onClick={() => navigate(p.route)}
                 onMouseEnter={() => setHovered(p.id)}
                 onMouseLeave={() => setHovered(null)}
                 style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', cursor: 'pointer', aspectRatio: '4/3', border: '1px solid #E0D8CC' }}>
                 <img src={p.img} alt={p.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hovered === p.id ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.3s' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,48,94,0.82)', opacity: hovered === p.id ? 1 : 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
                   <div style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 800, textAlign: 'center', padding: '0 20px' }}>{p.label}</div>
-                  <div style={{ background: '#B86B25', color: '#fff', padding: '8px 20px', borderRadius: '20px', fontSize: '13px', fontWeight: 600 }}>🔍 Enlarge Photo</div>
+                  <div style={{ background: '#B86B25', color: '#fff', padding: '8px 20px', borderRadius: '20px', fontSize: '13px', fontWeight: 600 }}>View Projects →</div>
                 </div>
               </div>
             ))}
