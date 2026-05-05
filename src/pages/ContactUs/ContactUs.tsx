@@ -11,7 +11,7 @@ export default function ContactUsPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      await fetch('https://formspree.io/f/xyzgpnkb', {
+      await fetch('https://formspree.io/f/xzdorrka', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
