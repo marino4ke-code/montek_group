@@ -1,91 +1,54 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Header from '../../reusable_sections/Header'
+import Footer from '../../reusable_sections/Footer'
 
-const LOGO = 'https://res.cloudinary.com/duiosldww/image/upload/ebtzuv8tbp4c3uzeiing.png'
+const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
+const photos = [
+  base + 'akzqml4so3mi7opxuwvx.jpg',
+  base + 'mhb7uvoamraahw6adycg.jpg',
+  base + 'iqphxlgxjqn2bgvxnhpi.jpg',
+  base + 'i0wvqgj14ofbgbharly7.jpg',
+  base + 'jatlvxokdvqjsk5zrsrk.jpg',
+  base + 'u7l0evqzayllhegwuyfx.jpg',
+  base + 'vu7vhaqynrhmwsfpcker.jpg',
+  base + 'aybdh4mhacd8mcuunvrl.jpg',
+  base + 'f43jbdte8s3rrottxnug.jpg',
+  base + 'zh7m7ye4vlrmzkaosjqr.jpg',
+  base + 'fnccm70yrjdld2u6otn5.jpg',
+  base + 'vhqjy6hykrlpflmgolwh.jpg',
+  base + 'hufcb4mtia1kx490nsuq.jpg',
+  base + 'ltque5ulrrl41lpgecl0.jpg',
+  base + 'j0ufjkn2b6ld4gdw80cp.jpg',
+]
 
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact Us', href: '/contact' },
-  ]
-
+export default function BathroomPage() {
   return (
-    <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '88px', maxWidth: '1400px', margin: '0 auto' }}>
-
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <img src={LOGO} alt="Montek Group LLC" style={{ height: '76px', width: 'auto', objectFit: 'contain' }} />
-          <span style={{ color: '#1A305E', fontSize: '19px', fontWeight: 800, lineHeight: 1.2 }}>
-            Montek<br />Group LLC
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }} id="desktop-nav">
-          {links.map(item => (
-            <Link key={item.label} to={item.href} style={{
-              color: location.pathname === item.href ? '#B86B25' : '#1A305E',
-              fontSize: '17px', fontWeight: 700, textDecoration: 'none',
-              padding: '8px 18px', borderRadius: '5px'
-            }}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Desktop right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} id="desktop-right">
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
-            <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-286-1223</a>
-            <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '16px', fontWeight: 800, textDecoration: 'none' }}>347-480-4805</a>
+    <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
+      <Header />
+      <section style={{ padding: '72px 48px' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+          <Link to="/projects" style={{ color: '#B86B25', fontSize: '13px', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginBottom: '24px' }}>← Back to Projects</Link>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Our Work</div>
+            <h1 style={{ color: '#1A305E', fontSize: '40px', fontWeight: 800, marginBottom: '12px' }}>Bathroom Renovation</h1>
+            <p style={{ color: '#5A6A7A', fontSize: '16px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>Custom tile, fixtures, waterproofing and complete bathroom rebuilds across NY & NJ.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
+            {photos.map((src, i) => (
+              <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
+                <img src={src} alt="Bathroom renovation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            ))}
+          </div>
+          <div style={{ background: '#1A305E', borderRadius: '12px', padding: '48px', textAlign: 'center' }}>
+            <h2 style={{ color: '#fff', fontSize: '28px', fontWeight: 800, marginBottom: '12px' }}>Ready to Renovate Your Bathroom?</h2>
+            <p style={{ color: '#94a3b8', fontSize: '15px', marginBottom: '24px' }}>Get a free estimate from Montek Group LLC today.</p>
+            <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 28px', borderRadius: '6px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>Get a Free Estimate</Link>
           </div>
         </div>
-
-        {/* Mobile hamburger */}
-        <button onClick={() => setMenuOpen(!menuOpen)}
-          style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
-          id="hamburger">
-          {menuOpen ? '✕' : '☰'}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0' }}>
-          {links.map(item => (
-            <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,
-              textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC'
-            }}>
-              {item.label}
-            </Link>
-          ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC' }}>
-            📞 347-286-1223
-          </a>
-          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px' }}>
-            📞 347-480-4805
-          </a>
-          <div style={{ padding: '16px 24px' }}>
-            <Link to="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '14px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
-              Get a Free Estimate
-            </Link>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          #hamburger { display: block !important; }
-          #desktop-nav { display: none !important; }
-          #desktop-right { display: none !important; }
-          header > div { padding: 0 20px !important; height: 72px !important; }
-        }
-      `}</style>
-    </header>
+      </section>
+      <Footer />
+    </div>
   )
 }

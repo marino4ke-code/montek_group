@@ -1,60 +1,82 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import Header from '../../reusable_sections/Header'
 import Footer from '../../reusable_sections/Footer'
 
 const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
 
-const photos = [
-  base + 'ny8hea1s6gke1rlggy9y.jpg',
-  base + 'df41qtu0kch71i4ujdni.jpg',
-  base + 'pvfvnxsxhov0e5xd3zpw.jpg',
-  base + 'ydqvpadb20ixws8bkjth.jpg',
-  base + 'bkfpsudqhjv2diaetjjq.jpg',
-  base + 'urr7jpnuooek41qn5ofe.jpg',
-  base + 'jsxpfkzvdf8bncxsfadm.jpg',
-  base + 'fvq2ri3jsuvald59pywu.jpg',
-  base + 'bhxuejmy0y82qd5qcyon.jpg',
-  base + 'zffauyhwrn2r3meryb1h.jpg',
-  base + 'y7zkygzd3gps40lviukr.jpg',
-  base + 'b3nhntcummwwvucowyt8.jpg',
-  base + 'mpdqcczkjulbltnjbm4v.jpg',
-  base + 'm6mvdsub9eghvv0reath.jpg',
-  base + 'qczybk7s5zgt0syeqhvw.jpg',
-  base + 'yu6ui0ehvzmlrfwq8rbm.jpg',
-  base + 'rqqs6yw97sulzuh2fedw.jpg',
-  base + 'p82itlsq1cta1c1nhxaa.jpg',
-  base + 'nbftpvyxg3g1a4cxiftl.jpg',
-  base + 'gp30pyoavqlxt9jb2osj.jpg',
-  base + 'zawfqwomybkebbbcu54g.jpg',
-  base + 'ki7bokpqsjphrjv3pa6s.jpg',
-  base + 'letguh81mup9jdun15ci.jpg',
-  base + 'jedoc60ukllcues6dnfq.jpg',
-  base + 'iz4i9wu08p9xs1wcojbm.jpg',
+const categories = [
+  { id: 'all', label: 'All Projects' },
+  { id: 'kitchen', label: 'Kitchen Remodeling' },
+  { id: 'bathroom', label: 'Bathroom Renovation' },
+  { id: 'fullhome', label: 'Residential' },
+  { id: 'commercial', label: 'Commercial' },
 ]
 
-export default function KitchenPage() {
+const photos = [
+  { id: 1, cat: 'kitchen', label: 'Kitchen Remodeling', img: base + 'dh7abtfsml8syjfs7hs4.jpg', route: '/kitchen' },
+  { id: 2, cat: 'fullhome', label: 'Residential Renovation', img: base + 'i92cwceygqrvbrlu7wha.jpg', route: '/fullhome' },
+  { id: 3, cat: 'kitchen', label: 'Kitchen Remodeling', img: base + 'qpu6io2na4e0lidffwwi.jpg', route: '/kitchen' },
+  { id: 4, cat: 'fullhome', label: 'Residential Renovation', img: base + 'meqrtoy1x1rs2hbpxb6l.jpg', route: '/fullhome' },
+  { id: 5, cat: 'bathroom', label: 'Bathroom Renovation', img: base + 'atvljn1gpxmwtx4gjlfu.jpg', route: '/bathroom' },
+  { id: 6, cat: 'kitchen', label: 'Kitchen Remodeling', img: base + 'ny8hea1s6gke1rlggy9y.jpg', route: '/kitchen' },
+  { id: 7, cat: 'bathroom', label: 'Bathroom Renovation', img: base + 'akzqml4so3mi7opxuwvx.jpg', route: '/bathroom' },
+  { id: 8, cat: 'fullhome', label: 'Residential Renovation', img: base + 'q4j7ko2p0saubuu2u9if.jpg', route: '/fullhome' },
+  { id: 9, cat: 'commercial', label: 'Commercial', img: base + 'ycbnw5milxx6rqe8ghfa.jpg', route: '/commercial' },
+  { id: 10, cat: 'kitchen', label: 'Kitchen Remodeling', img: base + 'bkfpsudqhjv2diaetjjq.jpg', route: '/kitchen' },
+  { id: 11, cat: 'bathroom', label: 'Bathroom Renovation', img: base + 'mhb7uvoamraahw6adycg.jpg', route: '/bathroom' },
+  { id: 12, cat: 'commercial', label: 'Commercial', img: base + 'iylk5qvbusw3u9ppfxqr.jpg', route: '/commercial' },
+]
+
+export default function ProjectsPage() {
+  const [active, setActive] = useState('all')
+  const [hovered, setHovered] = useState<number | null>(null)
+  const navigate = useNavigate()
+  const filtered = active === 'all' ? photos : photos.filter(p => p.cat === active)
+
   return (
     <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
       <Header />
-      <section style={{ padding: '72px 48px' }}>
+      <section style={{ padding: 'clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          <Link to="/projects" style={{ color: '#B86B25', fontSize: '13px', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginBottom: '24px' }}>← Back to Projects</Link>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Our Work</div>
-            <h1 style={{ color: '#1A305E', fontSize: '40px', fontWeight: 800, marginBottom: '12px' }}>Kitchen Remodeling</h1>
-            <p style={{ color: '#5A6A7A', fontSize: '16px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>Custom cabinets, countertops, layouts and full gut renovations across NY & NJ.</p>
+            <h1 style={{ color: '#1A305E', fontSize: 'clamp(28px, 5vw, 40px)', fontWeight: 800, marginBottom: '12px' }}>Project Gallery</h1>
+            <p style={{ color: '#5A6A7A', fontSize: '16px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>Browse our completed projects. Click any photo to see the full gallery.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
-            {photos.map((src, i) => (
-              <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
-                <img src={src} alt="Kitchen remodeling" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '40px' }}>
+            {categories.map(c => (
+              <button key={c.id} onClick={() => setActive(c.id)} style={{
+                padding: '10px 20px', borderRadius: '25px',
+                border: '2px solid #1A305E',
+                background: active === c.id ? '#1A305E' : 'transparent',
+                color: active === c.id ? '#fff' : '#1A305E',
+                fontSize: '14px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+              }}>{c.label}</button>
+            ))}
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+            {filtered.map(p => (
+              <div key={p.id}
+                onClick={() => navigate(p.route)}
+                onMouseEnter={() => setHovered(p.id)}
+                onMouseLeave={() => setHovered(null)}
+                style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', cursor: 'pointer', aspectRatio: '4/3', border: '1px solid #E0D8CC' }}>
+                <img src={p.img} alt={p.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hovered === p.id ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.3s' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,48,94,0.82)', opacity: hovered === p.id ? 1 : 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                  <div style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 800, textAlign: 'center', padding: '0 20px' }}>{p.label}</div>
+                  <div style={{ background: '#B86B25', color: '#fff', padding: '8px 20px', borderRadius: '20px', fontSize: '13px', fontWeight: 600 }}>View Gallery →</div>
+                </div>
               </div>
             ))}
           </div>
-          <div style={{ background: '#1A305E', borderRadius: '12px', padding: '48px', textAlign: 'center' }}>
-            <h2 style={{ color: '#fff', fontSize: '28px', fontWeight: 800, marginBottom: '12px' }}>Ready to Remodel Your Kitchen?</h2>
-            <p style={{ color: '#94a3b8', fontSize: '15px', marginBottom: '24px' }}>Get a free estimate from Montek Group LLC today.</p>
-            <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 28px', borderRadius: '6px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>Get a Free Estimate</Link>
+
+          <div style={{ textAlign: 'center', marginTop: '56px' }}>
+            <Link to="/contact" style={{ background: '#1A305E', color: '#fff', padding: '14px 32px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
+              Get a Free Estimate
+            </Link>
           </div>
         </div>
       </section>

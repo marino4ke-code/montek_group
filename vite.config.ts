@@ -1,64 +1,58 @@
 import { Link } from 'react-router-dom'
-import Header from '../../reusable_sections/Header'
-import Footer from '../../reusable_sections/Footer'
 
-const base = 'https://res.cloudinary.com/duiosldww/image/upload/'
+const HERO_IMG = 'https://res.cloudinary.com/duiosldww/image/upload/dh7abtfsml8syjfs7hs4.jpg'
 
-const photos = [
-  base + 'ny8hea1s6gke1rlggy9y.jpg',
-  base + 'df41qtu0kch71i4ujdni.jpg',
-  base + 'pvfvnxsxhov0e5xd3zpw.jpg',
-  base + 'ydqvpadb20ixws8bkjth.jpg',
-  base + 'bkfpsudqhjv2diaetjjq.jpg',
-  base + 'urr7jpnuooek41qn5ofe.jpg',
-  base + 'jsxpfkzvdf8bncxsfadm.jpg',
-  base + 'fvq2ri3jsuvald59pywu.jpg',
-  base + 'bhxuejmy0y82qd5qcyon.jpg',
-  base + 'zffauyhwrn2r3meryb1h.jpg',
-  base + 'y7zkygzd3gps40lviukr.jpg',
-  base + 'b3nhntcummwwvucowyt8.jpg',
-  base + 'mpdqcczkjulbltnjbm4v.jpg',
-  base + 'm6mvdsub9eghvv0reath.jpg',
-  base + 'qczybk7s5zgt0syeqhvw.jpg',
-  base + 'yu6ui0ehvzmlrfwq8rbm.jpg',
-  base + 'rqqs6yw97sulzuh2fedw.jpg',
-  base + 'p82itlsq1cta1c1nhxaa.jpg',
-  base + 'nbftpvyxg3g1a4cxiftl.jpg',
-  base + 'gp30pyoavqlxt9jb2osj.jpg',
-  base + 'zawfqwomybkebbbcu54g.jpg',
-  base + 'ki7bokpqsjphrjv3pa6s.jpg',
-  base + 'letguh81mup9jdun15ci.jpg',
-  base + 'jedoc60ukllcues6dnfq.jpg',
-  base + 'iz4i9wu08p9xs1wcojbm.jpg',
-]
-
-export default function KitchenPage() {
+export default function Hero() {
   return (
-    <div style={{ background: '#F5F2EA', minHeight: '100vh' }}>
-      <Header />
-      <section style={{ padding: '72px 48px' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          <Link to="/projects" style={{ color: '#B86B25', fontSize: '13px', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginBottom: '24px' }}>← Back to Projects</Link>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <div style={{ fontSize: '12px', color: '#B86B25', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Our Work</div>
-            <h1 style={{ color: '#1A305E', fontSize: '40px', fontWeight: 800, marginBottom: '12px' }}>Kitchen Remodeling</h1>
-            <p style={{ color: '#5A6A7A', fontSize: '16px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>Custom cabinets, countertops, layouts and full gut renovations across NY & NJ.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '48px' }}>
-            {photos.map((src, i) => (
-              <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #E0D8CC', aspectRatio: '4/3' }}>
-                <img src={src} alt="Kitchen remodeling" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-            ))}
-          </div>
-          <div style={{ background: '#1A305E', borderRadius: '12px', padding: '48px', textAlign: 'center' }}>
-            <h2 style={{ color: '#fff', fontSize: '28px', fontWeight: 800, marginBottom: '12px' }}>Ready to Remodel Your Kitchen?</h2>
-            <p style={{ color: '#94a3b8', fontSize: '15px', marginBottom: '24px' }}>Get a free estimate from Montek Group LLC today.</p>
-            <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 28px', borderRadius: '6px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>Get a Free Estimate</Link>
-          </div>
+    <section style={{ position: 'relative', minHeight: '640px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${HERO_IMG}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,22,40,0.68)' }} />
+      <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px)', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+
+        <h1 style={{ color: '#fff', fontSize: 'clamp(30px, 5vw, 56px)', fontWeight: 800, lineHeight: 1.15, marginBottom: '20px', maxWidth: '720px' }}>
+          Construction & Renovation<br />Done Right — <span style={{ color: '#B86B25' }}>Every Time</span>
+        </h1>
+        <p style={{ color: '#F5F2EA', fontSize: 'clamp(14px, 2vw, 17px)', lineHeight: 1.8, marginBottom: '36px', maxWidth: '580px', opacity: 0.92 }}>
+          Montek Group LLC delivers premium residential and commercial renovation across Staten Island, Manhattan, Brooklyn, Queens, and New Jersey.
+        </p>
+        <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '36px' }}>
+          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '15px 30px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none' }}>
+            Get a Free Estimate
+          </Link>
+          <a href="tel:3472861223" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '15px 30px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none' }}>
+            347-286-1223
+          </a>
+          <a href="tel:3474804805" style={{ background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.7)', padding: '15px 30px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none' }}>
+            347-480-4805
+          </a>
         </div>
-      </section>
-      <Footer />
-    </div>
+
+        {/* Trust badges - Licensed & Insured and Residential & Commercial highlighted */}
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          {[
+            { text: 'Licensed & Insured NY & NJ', highlight: true },
+            { text: 'Free Estimates', highlight: false },
+            { text: 'Residential & Commercial', highlight: true },
+            { text: 'Warranty on Labor', highlight: true },
+          ].map(t => (
+            <div key={t.text} style={{
+              background: t.highlight ? 'rgba(184,107,37,0.3)' : 'rgba(10,22,40,0.75)',
+              border: t.highlight ? '2px solid #B86B25' : '1px solid rgba(255,255,255,0.3)',
+              color: '#fff',
+              fontSize: '14px',
+              padding: '10px 22px',
+              borderRadius: '30px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontWeight: t.highlight ? 700 : 500,
+            }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#B86B25', display: 'inline-block', flexShrink: 0 }} />
+              {t.text}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
