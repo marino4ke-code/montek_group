@@ -15,19 +15,22 @@ export default function Header() {
 
   return (
     <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '72px', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '80px', maxWidth: '1400px', margin: '0 auto' }}>
 
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <img src={LOGO} alt="Montek Group LLC" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src={LOGO} alt="Montek Group LLC" style={{ height: '68px', width: 'auto', objectFit: 'contain' }} />
+          <span style={{ color: '#1A305E', fontSize: '17px', fontWeight: 800, letterSpacing: '0.3px', lineHeight: 1.2 }}>
+            Montek<br />Group LLC
+          </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+        <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }} id="desktop-nav">
           {links.map(item => (
             <Link key={item.label} to={item.href} style={{
               color: location.pathname === item.href ? '#B86B25' : '#1A305E',
-              fontSize: '14px', fontWeight: 600, textDecoration: 'none',
-              padding: '8px 16px', borderRadius: '5px'
+              fontSize: '16px', fontWeight: 700, textDecoration: 'none',
+              padding: '8px 18px', borderRadius: '5px', letterSpacing: '0.3px'
             }}>
               {item.label}
             </Link>
@@ -35,23 +38,16 @@ export default function Header() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {/* Desktop Phone Numbers */}
-          <div className="desktop-phones" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-            <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '13px', fontWeight: 700, textDecoration: 'none', lineHeight: '1.2' }}>
-              347-286-1223
-            </a>
-            <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '13px', fontWeight: 700, textDecoration: 'none', lineHeight: '1.2' }}>
-              347-480-4805
-            </a>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }} id="phone-block">
+            <a href="tel:3472861223" style={{ color: '#1A305E', fontSize: '15px', fontWeight: 700, textDecoration: 'none' }}>347-286-1223</a>
+            <a href="tel:3474804805" style={{ color: '#1A305E', fontSize: '15px', fontWeight: 700, textDecoration: 'none' }}>347-480-4805</a>
           </div>
-
-          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '10px 20px', borderRadius: '5px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+          <Link to="/contact" style={{ background: '#B86B25', color: '#fff', padding: '12px 22px', borderRadius: '5px', fontSize: '15px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
             Free Quote
           </Link>
-
           {/* Mobile hamburger */}
           <button onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'none', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
+            style={{ display: 'none', background: 'none', border: 'none', fontSize: '28px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
             id="hamburger">
             {menuOpen ? '✕' : '☰'}
           </button>
@@ -60,29 +56,29 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }} id="mobile-menu">
+        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '16px 24px' }}>
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block', color: '#1A305E', fontSize: '16px', fontWeight: 600,
+              display: 'block', color: '#1A305E', fontSize: '17px', fontWeight: 700,
               textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC'
             }}>
               {item.label}
             </Link>
           ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '16px', fontWeight: 700, textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC' }}>
+          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '17px', fontWeight: 700, textDecoration: 'none', padding: '14px 0', borderBottom: '1px solid #E0D8CC' }}>
             📞 347-286-1223
           </a>
-          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '16px', fontWeight: 700, textDecoration: 'none', padding: '14px 0' }}>
+          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '17px', fontWeight: 700, textDecoration: 'none', padding: '14px 0' }}>
             📞 347-480-4805
           </a>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
           #hamburger { display: block !important; }
-          nav { display: none !important; }
-          .desktop-phones { display: none !important; }
+          #desktop-nav { display: none !important; }
+          #phone-block { display: none !important; }
           header > div { padding: 0 20px !important; }
         }
       `}</style>
