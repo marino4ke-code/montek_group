@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const LOGO = 'https://res.cloudinary.com/duiosldww/image/upload/ebtzuv8tbp4c3uzeiing.png'
@@ -12,6 +12,19 @@ export default function Header() {
     { label: 'Projects', href: '/projects' },
     { label: 'Contact Us', href: '/contact' },
   ]
+
+  // Lock page scroll when mobile menu is open so the background doesn't move
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  // Close menu when route changes
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
   return (
     <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999, isolation: 'isolate' }}>
@@ -50,36 +63,48 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button onClick={() => setMenuOpen(!menuOpen)}
-          style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px', zIndex: 10001, position: 'relative' }}
           id="hamburger">
           {menuOpen ? '✕' : '☰'}
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu - full screen, solid background */}
       {menuOpen && (
-        <div onClick={() => setMenuOpen(false)} style={{ position: 'fixed', inset: 0, top: 0, zIndex: 9998, background: 'rgba(0,0,0,0.4)' }} />
-      )}
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div style={{ background: '#F5F2EA', borderTop: '1px solid #E0D8CC', padding: '8px 0', position: 'fixed', top: '72px', left: 0, right: 0, zIndex: 9999, boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}>
+        <div
+          id="mobile-menu"
+          style={{
+            position: 'fixed',
+            top: '72px',       // sits flush right under the mobile header bar
+            left: 0,
+            right: 0,
+            bottom: 0,         // covers everything down to the bottom of the screen
+            background: '#F5F2EA',  // solid, opaque - no see-through
+            zIndex: 9998,
+            overflowY: 'auto',
+            padding: '8px 0 24px',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+          }}
+        >
           {links.map(item => (
             <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block', color: '#1A305E', fontSize: '18px', fontWeight: 700,
-              textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC'
+              display: 'block',
+              color: location.pathname === item.href ? '#B86B25' : '#1A305E',
+              fontSize: '18px', fontWeight: 700,
+              textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC'
             }}>
               {item.label}
             </Link>
           ))}
-          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px', borderBottom: '1px solid #E0D8CC' }}>
+          <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC' }}>
             📞 347-286-1223
           </a>
-          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '16px 24px' }}>
+          <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '18px', fontWeight: 700, textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC' }}>
             📞 347-480-4805
           </a>
-          <div style={{ padding: '16px 24px' }}>
-            <Link to="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '14px', borderRadius: '6px', fontSize: '16px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
+          <div style={{ padding: '20px 24px' }}>
+            <Link to="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '16px', borderRadius: '6px', fontSize: '17px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
               Get a Free Estimate
             </Link>
           </div>
