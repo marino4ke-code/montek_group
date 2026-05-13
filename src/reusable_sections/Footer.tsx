@@ -25,21 +25,13 @@ const GoogleIcon = () => (
 )
 
 export default function Footer() {
-  const socials = [
-    { label: 'Facebook', Icon: FacebookIcon, href: 'https://www.facebook.com/montekgroup' },
-    { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/montekgroupllc/' },
-    { label: 'Google', Icon: GoogleIcon, href: 'https://maps.app.goo.gl/v6WdpMuwhZctZHho6' },
-  ]
-
   return (
     <footer style={{ background: '#1A305E', borderTop: '3px solid #B86B25', padding: '56px 48px 28px' }}>
       <style>{`
-        /* Tablet — drop to 2 columns */
         @media (max-width: 900px) {
           .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
           .footer-wrap { padding: 40px 24px 20px !important; }
         }
-        /* Mobile — single column so nothing gets clipped */
         @media (max-width: 700px) {
           .footer-root { padding: 40px 20px 24px !important; }
           .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; margin-bottom: 28px !important; }
@@ -66,53 +58,65 @@ export default function Footer() {
             <p className="footer-brand-desc" style={{ color: '#cbd5e1', fontSize: '16px', lineHeight: 1.7, maxWidth: '320px', marginBottom: '16px' }}>
               Licensed & insured construction and renovation serving Staten Island, Manhattan, Brooklyn, Queens, and New Jersey.
             </p>
-            {/* Social icons */}
+            {/* Social icons - hardcoded for max compatibility */}
             <div style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
-              {socials.map(({ label, Icon, href }) => (
-                <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" style={{
-                  width: '44px', height: '44px', borderRadius: '8px',
-                  background: '#142444', border: '1px solid #1e3a6e',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#fff', textDecoration: 'none', transition: 'border-color 0.2s'
-                }}
-                  onMouseOver={e => (e.currentTarget.style.borderColor = '#B86B25')}
-                  onMouseOut={e => (e.currentTarget.style.borderColor = '#1e3a6e')}>
-                  <Icon />
-                </a>
-              ))}
+              <a href="https://www.facebook.com/montekgroup" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style={{
+                width: '44px', height: '44px', borderRadius: '8px',
+                background: '#142444', border: '1px solid #1e3a6e',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', textDecoration: 'none'
+              }}>
+                <FacebookIcon />
+              </a>
+              <a href="https://www.instagram.com/montekgroupllc/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style={{
+                width: '44px', height: '44px', borderRadius: '8px',
+                background: '#142444', border: '1px solid #1e3a6e',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', textDecoration: 'none'
+              }}>
+                <InstagramIcon />
+              </a>
+              <a href="https://maps.app.goo.gl/v6WdpMuwhZctZHho6" aria-label="Google" target="_blank" rel="noopener noreferrer" style={{
+                width: '44px', height: '44px', borderRadius: '8px',
+                background: '#142444', border: '1px solid #1e3a6e',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', textDecoration: 'none'
+              }}>
+                <GoogleIcon />
+              </a>
             </div>
           </div>
 
           <div>
             <div className="footer-heading" style={{ color: '#B86B25', fontSize: '13px', letterSpacing: '1.5px', fontWeight: 700, marginBottom: '18px', textTransform: 'uppercase' }}>Pages</div>
-            {[{ label: 'Home', href: '/' }, { label: 'Projects', href: '/projects' }, { label: 'Contact Us', href: '/contact' }].map(item => (
-              <Link key={item.label} to={item.href} className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>
-                {item.label}
-              </Link>
-            ))}
+            <Link to="/" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Home</Link>
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Projects</Link>
+            <Link to="/contact" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Contact Us</Link>
           </div>
 
           <div>
             <div className="footer-heading" style={{ color: '#B86B25', fontSize: '13px', letterSpacing: '1.5px', fontWeight: 700, marginBottom: '18px', textTransform: 'uppercase' }}>Services</div>
-            {['Kitchen Remodeling', 'Bathroom Renovation', 'Basement Finishing', 'Flooring & Painting', 'Commercial Work'].map(s => (
-              <Link key={s} to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>{s}</Link>
-            ))}
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Kitchen Remodeling</Link>
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Bathroom Renovation</Link>
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Basement Finishing</Link>
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Flooring & Painting</Link>
+            <Link to="/projects" className="footer-link" style={{ color: '#cbd5e1', fontSize: '16px', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>Commercial Work</Link>
           </div>
 
           <div>
             <div className="footer-heading" style={{ color: '#B86B25', fontSize: '13px', letterSpacing: '1.5px', fontWeight: 700, marginBottom: '18px', textTransform: 'uppercase' }}>Contact</div>
-            <a href="tel:3472861223" className="footer-phone" style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 700, marginBottom: '10px', display: 'block', textDecoration: 'none' }}>📞 347-286-1223</a>
-            <a href="tel:3474804805" className="footer-phone" style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 700, marginBottom: '14px', display: 'block', textDecoration: 'none' }}>📞 347-480-4805</a>
-            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginBottom: '4px' }}>📍 Staten Island, NY</div>
-            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginTop: '16px', marginBottom: '4px' }}>Mon–Fri: 7AM – 7PM</div>
-            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginBottom: '4px' }}>Sat: 8AM – 5PM</div>
+            <a href="tel:3472861223" className="footer-phone" style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 700, marginBottom: '10px', display: 'block', textDecoration: 'none' }}>347-286-1223</a>
+            <a href="tel:3474804805" className="footer-phone" style={{ color: '#F5F2EA', fontSize: '18px', fontWeight: 700, marginBottom: '14px', display: 'block', textDecoration: 'none' }}>347-480-4805</a>
+            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginBottom: '4px' }}>Staten Island, NY</div>
+            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginTop: '16px', marginBottom: '4px' }}>Mon-Fri: 7AM - 7PM</div>
+            <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px', marginBottom: '4px' }}>Sat: 8AM - 5PM</div>
             <div className="footer-meta" style={{ color: '#cbd5e1', fontSize: '15px' }}>Sun: By Appointment</div>
           </div>
         </div>
 
         <div className="footer-bottom" style={{ borderTop: '1px solid #1e3a6e', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <div className="footer-copyright" style={{ color: '#94a3b8', fontSize: '14px' }}>© 2026 Montek Group LLC. All rights reserved.</div>
-          <div className="footer-badge" style={{ background: 'rgba(184,107,37,0.15)', border: '1px solid #B86B25', color: '#B86B25', fontSize: '13px', padding: '6px 18px', borderRadius: '20px', fontWeight: 700 }}>✓ Licensed & Insured — NY & NJ</div>
+          <div className="footer-copyright" style={{ color: '#94a3b8', fontSize: '14px' }}>(c) 2026 Montek Group LLC. All rights reserved.</div>
+          <div className="footer-badge" style={{ background: 'rgba(184,107,37,0.15)', border: '1px solid #B86B25', color: '#B86B25', fontSize: '13px', padding: '6px 18px', borderRadius: '20px', fontWeight: 700 }}>Licensed & Insured - NY & NJ</div>
         </div>
       </div>
     </footer>

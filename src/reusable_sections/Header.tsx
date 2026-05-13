@@ -7,16 +7,29 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
 
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact Us', href: '/contact' },
-  ]
-
-  // Close menu when navigating to a new page
+  // Close menu whenever the URL path changes
   useEffect(() => {
     setMenuOpen(false)
   }, [location.pathname])
+
+  const navLinkStyle = (path: string) => ({
+    color: location.pathname === path ? '#B86B25' : '#1A305E',
+    fontSize: '19px',
+    fontWeight: 700,
+    textDecoration: 'none',
+    padding: '8px 20px',
+    borderRadius: '5px'
+  })
+
+  const mobileLinkStyle = (path: string) => ({
+    display: 'block',
+    color: location.pathname === path ? '#B86B25' : '#1A305E',
+    fontSize: '20px',
+    fontWeight: 700,
+    textDecoration: 'none',
+    padding: '18px 24px',
+    borderBottom: '1px solid #E0D8CC'
+  })
 
   return (
     <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999, isolation: 'isolate' }}>
@@ -31,15 +44,9 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav style={{ display: 'flex', gap: '4px', alignItems: 'center' }} id="desktop-nav">
-          {links.map(item => (
-            <Link key={item.label} to={item.href} style={{
-              color: location.pathname === item.href ? '#B86B25' : '#1A305E',
-              fontSize: '19px', fontWeight: 700, textDecoration: 'none',
-              padding: '8px 20px', borderRadius: '5px'
-            }}>
-              {item.label}
-            </Link>
-          ))}
+          <Link to="/" style={navLinkStyle('/')}>Home</Link>
+          <Link to="/projects" style={navLinkStyle('/projects')}>Projects</Link>
+          <Link to="/contact" style={navLinkStyle('/contact')}>Contact Us</Link>
         </nav>
 
         {/* Desktop right side */}
@@ -54,14 +61,17 @@ export default function Header() {
         </div>
 
         {/* Mobile hamburger */}
-        <button onClick={() => setMenuOpen(!menuOpen)}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           style={{ display: 'none', background: 'none', border: 'none', fontSize: '32px', cursor: 'pointer', color: '#1A305E', padding: '4px' }}
-          id="hamburger">
-          {menuOpen ? '✕' : '☰'}
+          id="hamburger"
+        >
+          {menuOpen ? '\u2715' : '\u2630'}
         </button>
       </div>
 
-      {/* Mobile Menu - same structure as original, just with solid background */}
+      {/* Mobile Menu - hardcoded links, no .map() so nothing can break iteration */}
       {menuOpen && (
         <div style={{
           background: '#F5F2EA',
@@ -76,22 +86,29 @@ export default function Header() {
           maxHeight: 'calc(100vh - 76px)',
           overflowY: 'auto'
         }}>
-          {links.map(item => (
-            <Link key={item.label} to={item.href} style={{
-              display: 'block', color: '#1A305E', fontSize: '20px', fontWeight: 700,
-              textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC'
-            }}>
-              {item.label}
-            </Link>
-          ))}
+          <Link to="/" style={mobileLinkStyle('/')}>Home</Link>
+          <Link to="/projects" style={mobileLinkStyle('/projects')}>Projects</Link>
+          <Link to="/contact" style={mobileLinkStyle('/contact')}>Contact Us</Link>
+
           <a href="tel:3472861223" style={{ display: 'block', color: '#B86B25', fontSize: '20px', fontWeight: 700, textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC' }}>
-            📞 347-286-1223
+            347-286-1223
           </a>
           <a href="tel:3474804805" style={{ display: 'block', color: '#B86B25', fontSize: '20px', fontWeight: 700, textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC' }}>
-            📞 347-480-4805
+            347-480-4805
           </a>
-          <div style={{ padding: '18px 24px' }}>
-            <Link to="/contact" style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '16px', borderRadius: '6px', fontSize: '18px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
+
+          <div style={{ padding: '20px 24px' }}>
+            <Link to="/contact" style={{
+              display: 'block',
+              background: '#B86B25',
+              color: '#fff',
+              padding: '16px',
+              borderRadius: '6px',
+              fontSize: '18px',
+              fontWeight: 700,
+              textDecoration: 'none',
+              textAlign: 'center'
+            }}>
               Get a Free Estimate
             </Link>
           </div>
