@@ -13,7 +13,14 @@ export default function Header() {
     { label: 'Contact Us', href: '/contact' },
   ]
 
-  // Lock page scroll when mobile menu is open so the background doesn't move
+  // Close the mobile menu whenever the route actually changes.
+  // This is the ONLY place we close on navigation - the links themselves
+  // don't have onClick handlers that could swallow the tap.
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
+  // Lock body scroll while the menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
@@ -22,9 +29,6 @@ export default function Header() {
     }
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
-
-  // Close menu when route changes
-  useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
   return (
     <header style={{ background: '#F5F2EA', borderBottom: '3px solid #1A305E', position: 'sticky', top: 0, zIndex: 9999, isolation: 'isolate' }}>
@@ -62,10 +66,12 @@ export default function Header() {
         </div>
 
         {/* Mobile hamburger */}
-        <button onClick={() => setMenuOpen(!menuOpen)}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           style={{ display: 'none', background: 'none', border: 'none', fontSize: '30px', cursor: 'pointer', color: '#1A305E', padding: '4px', zIndex: 10001, position: 'relative' }}
-          id="hamburger">
+          id="hamburger"
+        >
           {menuOpen ? '✕' : '☰'}
         </button>
       </div>
@@ -76,11 +82,11 @@ export default function Header() {
           id="mobile-menu"
           style={{
             position: 'fixed',
-            top: '72px',       // sits flush right under the mobile header bar
+            top: '72px',
             left: 0,
             right: 0,
-            bottom: 0,         // covers everything down to the bottom of the screen
-            background: '#F5F2EA',  // solid, opaque - no see-through
+            bottom: 0,
+            background: '#F5F2EA',
             zIndex: 9998,
             overflowY: 'auto',
             padding: '8px 0 24px',
@@ -88,12 +94,19 @@ export default function Header() {
           }}
         >
           {links.map(item => (
-            <Link key={item.label} to={item.href} onClick={() => setMenuOpen(false)} style={{
-              display: 'block',
-              color: location.pathname === item.href ? '#B86B25' : '#1A305E',
-              fontSize: '18px', fontWeight: 700,
-              textDecoration: 'none', padding: '18px 24px', borderBottom: '1px solid #E0D8CC'
-            }}>
+            <Link
+              key={item.label}
+              to={item.href}
+              style={{
+                display: 'block',
+                color: location.pathname === item.href ? '#B86B25' : '#1A305E',
+                fontSize: '18px',
+                fontWeight: 700,
+                textDecoration: 'none',
+                padding: '18px 24px',
+                borderBottom: '1px solid #E0D8CC',
+              }}
+            >
               {item.label}
             </Link>
           ))}
@@ -104,7 +117,10 @@ export default function Header() {
             📞 347-480-4805
           </a>
           <div style={{ padding: '20px 24px' }}>
-            <Link to="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '16px', borderRadius: '6px', fontSize: '17px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
+            <Link
+              to="/contact"
+              style={{ display: 'block', background: '#B86B25', color: '#fff', padding: '16px', borderRadius: '6px', fontSize: '17px', fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}
+            >
               Get a Free Estimate
             </Link>
           </div>
